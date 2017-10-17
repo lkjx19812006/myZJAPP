@@ -1,0 +1,106 @@
+/*基础类*/
+*,body,html, ul, li, ol, dl, h1,h2,h3,h4,h5,h6{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+ul, li, ol, dl{
+	list-style: none;
+}
+
+input,textarea {
+	outline-style: none;
+}
+
+/*颜色*/
+.color-in {
+	color: #F78F62;
+}
+.color-out {
+	color: #F68D8D;
+}
+.color-total {
+	color: #FF7F27;
+}
+.color-f{
+	color: #FFFFFF;
+}
+/*字体大小*/
+.fz-16{
+	font-size: 16px;
+}
+.fz-18{
+	font-size: 18px;
+}
+.fz-20{
+	font-size: 20px;
+}
+
+/*字体粗细*/
+.fw-400 {
+	font-weight: 400;
+}
+.fw-700 {
+	font-weight: 700;
+}
+.padding-5 {
+	padding: 5px;
+}
+.padding-10 {
+	padding: 10px;
+}
+
+/* 绝对定位 */
+.position-absolute {
+	position: absolute;
+}
+
+
+/* 绝对定位居中 */
+
+.position-absolute-center {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: 1;
+}
+
+/* 绝对定位顶部居中 */
+
+.position-absolute-top-center {
+	position: absolute;
+	top: 0;
+	margin: auto;
+	z-index: 1;
+}
+
+/* 弹性盒子 水平主轴 */
+
+.display-flex-row-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+/* 弹性盒子 垂直主轴 */
+
+.display-flex-row-start {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+
+/* 弹性盒子 垂直主轴 */
+
+.display-flex-column-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-wrap: wrap;
+}

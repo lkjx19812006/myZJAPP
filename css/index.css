@@ -1,0 +1,75 @@
+.my-header-index {
+	height: 120px;
+	width: 100%;
+	overflow: hidden;
+	position: fixed;
+	background: #FF7F27;
+}
+
+.my-header-index .content {
+	height: 100%;
+	padding-bottom: 10px;
+	width: 100%;
+	z-index: 1;
+}
+
+.my-header-index .top {
+	flex: 0 0 auto;
+	width: 50%;
+	text-align: center;
+}
+
+.my-header-index .top .iconfont,
+.my-header-index .bottom .iconfont {
+	line-break: 32px;
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+
+/*列表开始*/
+
+.items {
+	margin-top: 5px;
+	font-size: 30px;
+	padding-top: 120px;
+	padding-bottom: 75px;
+	background: #fff;
+}
+
+.items .item {
+	border: 1px solid #d0d0d0;
+	border-radius: 4px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.item .item-title {
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	background: #e0e0e0;
+	border-bottom: 1px solid #d0d0d0;
+}
+
+.item .item-title .iconfont {
+	font-size: 20px;
+}
+
+.item .item-title .iconfont::before {
+	margin-right: 5px;
+}
+
+.item .item-content .iconfont {
+	font-size: 18px;
+}
+
+.item .item-content .subItem {
+	text-align: center;
+	flex: 0 0 50%;
+	padding: 10px;
+}
+
+.item .item-content .left {
+	border-right: 1px solid #d0d0d0;
+}

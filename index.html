@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="css/common/base.css">
+		<link rel="stylesheet" href="css/common/mui.min.css">
+		<link rel="stylesheet" href="css/iconfont/iconfont.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<title>首页</title>
+		<style>
+			body, html {
+				background: #fff;
+			}
+		</style>			
+	</head>
+
+	<body>
+		<div class="mui-content" id="box">
+			<!--头部-->
+			<div class="my-header-index position-absolute-top-center">
+				<div class="position-absolute-top-center content display-flex-row-center">
+					<div class="top top_left color-f">
+						<div class="iconfont icon-shouru">总收入</div>
+						<div class="total-in fz-20 fw-700">
+							<span>￥</span>
+							<span>0.00</span>
+						</div>
+					</div>
+					<div class="top top_right color-f">
+						<div class="iconfont icon-zhichu">总支出</div>
+						<div class="total-in fz-20 fw-700">
+							<span>￥</span>
+							<span>0.00</span>
+						</div>
+					</div>
+					<div class="bottom color-f">
+						<div class="iconfont icon-jinqianmingxi">结余</div>
+						<div class="total-in fz-20 fw-700">
+							<span>￥</span>
+							<span>0.00</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--列表-->
+			<ul class="items padding-5">
+				<li class="item" v-for="item in listDate">
+					<div class="item-title color-total">
+						<div class="iconfont" :class="item.icon">{{item.title}}</div>
+					</div>
+					<div class="item-content display-flex-row-center">
+						<div class="subItem left color-in">
+							<div class="iconfont icon-shouru">收入</div>
+							<div class="total-in fz-18 fw-700">
+								<span>￥</span>
+								<span>0.00</span>
+							</div>
+						</div>
+						<div class="subItem right color-out">
+							<div class="iconfont icon-zhichu">支出</div>
+							<div class="total-in fz-18 fw-700">
+								<span>￥</span>
+								<span>0.00</span>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<script src="libs/mui.min.js"></script>
+		<script src="libs/utils.js"></script>
+		<script src="libs/vue.min.js"></script>
+		<script src="components/common.js"></script>
+		<script src="js/index.js"></script>
+
+		<script>
+			var vm = new Vue({
+				el: '#box',
+				data: function() {
+					return {
+						listDate: [{
+								title: '今日',
+								icon: 'icon-ri'
+							},
+							{
+								title: '本周',
+								icon: 'icon-xiao41'
+							},
+							{
+								title: '本月',
+								icon: 'icon-yue'
+							},
+							{
+								title: '今年',
+								icon: 'icon-nian'
+							}
+						]
+					}
+				},
+				methods: {
+
+				}
+			})
+			//初始化
+			mui.init({
+				swipeBack: true, //启用右滑关闭功能,
+				statusbar: {
+					background: 'red'
+				}
+			});
+
+			//加载完成
+			mui.plusReady(function() {
+				var _self = plus.webview.currentWebview();
+				//预加载 添加页
+				var webViewAdd = '';
+				setTimeout(function(){
+					webViewAdd = utils.prePages('html/add.html', 'add', {background: 'transparent'});
+				}, 300)
+				
+				
+				_self.setStyle({
+					scrollIndicator: 'none'
+				})
+				var iconWidth = 70; //图标大小
+				var offset = 5; //图标容器偏移
+				var leftOffset = Math.ceil((window.innerWidth - iconWidth) / 2);
+
+				//绘制中间大球按钮
+				var NativeIconBg = utils.drawNativeView('iconBg', {
+					bottom: offset + 'px',
+					left: leftOffset + 'px',
+					width: iconWidth + 'px',
+					height: iconWidth + 'px',
+					position: 'dock'
+				}, [{
+						tag: 'rect',
+						id: 'bg',
+						position: {
+							top: '0px',
+							left: '0px',
+							width: '100%',
+							height: '100%'
+						},
+						rectStyles: {
+							color: '#fff',
+							radius: '50%',
+							borderColor: '#e0e0e0',
+							borderWidth: '1px'
+						}
+					},
+					{
+						tag: 'rect',
+						id: 'bg2',
+						position: {
+							bottom: '0px',
+							left: '0px',
+							width: '100%',
+							height: 50 - offset + 'px'
+						},
+						rectStyles: {
+							color: '#fff',
+						}
+					},
+					{
+						tag: 'rect',
+						id: 'bg3',
+						position: {
+							top: offset + 'px',
+							left: offset + 'px',
+							width: iconWidth - offset * 2 + 'px',
+							height: iconWidth - offset * 2 + 'px'
+						},
+						rectStyles: {
+							color: utils.config.activeColor || '#FF7F27',
+							radius: '50%'
+						}
+					},
+					{
+						tag: 'font',
+						id: 'text1',
+						text: '\ue65d',
+						position: {
+							top: '5px',
+							left: '0px',
+							width: '100%',
+							height: '40px'
+						},
+						textStyles: {
+							fontSrc: '_www/css/iconfont/iconfont.ttf',
+							color: '#fff',
+							align: 'center',
+							size: '24px'
+						}
+					},
+					{
+						tag: 'font',
+						id: 'text2',
+						text: '记一笔',
+						position: {
+							top: '30px',
+							left: '0px',
+							width: '100%',
+							height: '35px'
+						},
+						textStyles: {
+							color: '#fff',
+							align: 'center',
+							size: '14px'
+						}
+					},
+				]);
+
+				// append 到父webview中
+				_self.append(NativeIconBg);
+
+				NativeIconBg.addEventListener('click', function(e) {
+					plus.webview.show(webViewAdd, 'slide-in-bottom', 300)
+				})
+			})
+		</script>
+	</body>
+
+</html>
