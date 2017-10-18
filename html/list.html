@@ -5,12 +5,58 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/common/base.css" />
+		<link rel="stylesheet" href="../css/common/mui.min.css"/>
+		<link rel="stylesheet" href="../css/iconfont/iconfont.css" />
+		<link rel="stylesheet" href="../css/anyi-ui.css" />
 	</head>
 
 	<body>
-		<h1>列表页</h1>
+		<div id="box">
+			<anyi-page-header title="列表页">
+				<anyi-page-header-left color="#f38657">
+					<span class="mui-action-back mui-icon mui-icon-left-nav"></span>
+				</anyi-page-header-left>
+				<anyi-page-header-right color="red">
+					<span class="mui-icon mui-icon-bars"></span>
+				</anyi-page-header-right>
+			</anyi-page-header>
+			<anyi-page-content header="120px" footer="50px">
+			</anyi-page-content>
+			<anyi-page-footer>
+				<anyi-page-footer-item :active="index === 1" @click="index = 1"> 
+					<span class="iconfont icon-shouye"></span>
+					<span>首页</span>
+				</anyi-page-footer-item>
+				<anyi-page-footer-item :active="index === 2" @click="index = 2">
+					<span class="iconfont icon-liebiao"></span>
+					<span>列表</span>
+				</anyi-page-footer-item>
+				<anyi-page-footer-item :active="index === 3" @click="index = 3">
+					<span class="iconfont icon-tubiao"></span>
+					<span>图标</span>
+				</anyi-page-footer-item>
+				<anyi-page-footer-item :active="index === 4" @click="index = 4">
+					<span class="iconfont icon-wode"></span>
+					<span>我的</span>
+				</anyi-page-footer-item>
+			</anyi-page-footer>
+		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../libs/vue.min.js"></script>
+		<script src="../libs/vueExtend.js"></script>
+		<script src="../libs/utils.js"></script>
+		<script src="../libs/Vuecommon.js"></script>
+		<script>
+			var vm = new Vue({
+				el: '#box',
+				data: function(){
+					return {
+						index: 1
+					}
+				}
+			})
+		</script>
 	</body>
 
 </html>

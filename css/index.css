@@ -30,11 +30,6 @@
 /*列表开始*/
 
 .items {
-	margin-top: 5px;
-	font-size: 30px;
-	padding-top: 120px;
-	padding-bottom: 75px;
-	background: #fff;
 }
 
 .items .item {

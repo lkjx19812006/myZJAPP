@@ -1,44 +1,47 @@
 {
-  "index.html": {
-    "resources": [
-      "css/fonts/mui-icons-extra.ttf",
-      "css/iconfont/iconfont.css",
-      "images/common/cbd.jpg",
-      "components/pageView.js",
-      "css/common/mui.min.css",
-      "libs/vue.min.js",
-      "components/common.js",
-      "libs/mui.min.js",
-      "css/common/base.css",
-      "/libs/vue.min.js",
-      "/libs/mui.min.js",
-      "/components/pageView.js",
-      "libs/common.js",
-      "/components/common.js",
-      "/libs/common.js",
-      "libs/utils.js",
-      "js/index.js",
-      "html/list.html",
-      "images/common/index-bgc.png",
-      "css/index.css"
-    ],
-    "refer": [
-      "html/list.html",
-      "html/user.html",
-      "html/chart.html",
-      "html/add.html"
-    ]
-  },
-  "html/add.html": {
-    "resources": [
-      "css/iconfont/iconfont.css",
-      "css/common/mui.min.css",
-      "css/fonts/mui.ttf",
-      "css/common/base.css",
-      "libs/vue.min.js",
-      "libs/mui.min.js",
-      "libs/vueExtend.js",
-      "libs/utils.js"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"css/fonts/mui-icons-extra.ttf",
+			"css/iconfont/iconfont.css",
+			"images/common/cbd.jpg",
+			"components/pageView.js",
+			"css/common/mui.min.css",
+			"libs/vue.min.js",
+			"components/common.js",
+			"libs/mui.min.js",
+			"css/common/base.css",
+			"/libs/vue.min.js",
+			"/libs/mui.min.js",
+			"/components/pageView.js",
+			"libs/common.js",
+			"/components/common.js",
+			"/libs/common.js",
+			"libs/utils.js",
+			"js/index.js",
+			"html/list.html",
+			"images/common/index-bgc.png",
+			"css/index.css",
+			"libs/Vuecommon.js",
+			"css/anyi-ui.css",
+			"libs/vueExtend.js"
+		],
+		"refer": [
+			"html/list.html",
+			"html/user.html",
+			"html/chart.html",
+			"html/add.html"
+		]
+	},
+	"html/add.html": {
+		"resources": [
+			"css/iconfont/iconfont.css",
+			"css/common/mui.min.css",
+			"css/fonts/mui.ttf",
+			"css/common/base.css",
+			"libs/vue.min.js",
+			"libs/mui.min.js",
+			"libs/vueExtend.js",
+			"libs/utils.js"
+		]
+	}
 }
