@@ -20,11 +20,13 @@ if(Vue) {
 					value.indexOf('.') === -1 ? value.length : value.indexOf('.') + 3
 				);
 			};
-			//格式话函数
+			//格式化函数
 			var formattedHandler = function(e) {
 				var tar = formattedValue(e.target.value);
-				vnode.context[binding.expression] = tar;
 				e.target.value = tar;
+				vnode.context[binding.expression] = tar;				
+				var range = window.getSelection();
+				range.collapseToEnd()
 			}
 		},
 	})

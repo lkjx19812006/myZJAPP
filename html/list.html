@@ -22,19 +22,24 @@
 				</anyi-page-header-right>
 			</anyi-page-header>
 			<anyi-page-content header="120px" footer="50px">
+				<anyi-input type="number" v-model.price="price"></anyi-input>
 			</anyi-page-content>
+			
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../libs/vue.min.js"></script>
 		<script src="../libs/vueExtend.js"></script>
 		<script src="../libs/utils.js"></script>
+		<script src="../libs/vueExtend.js"></script>
 		<script src="../libs/Vuecommon.js"></script>
+		
 		<script>
 			var vm = new Vue({
 				el: '#box',
 				data: function(){
 					return {
-						index: 1
+						index: 1,
+						price: ''
 					}
 				}
 			})
