@@ -1,26 +1,27 @@
-.my-header-index {
+.index-header {
 	height: 120px;
+	padding-top: 10px;
 	width: 100%;
 	overflow: hidden;
 	position: fixed;
 	background: #FF7F27;
 }
 
-.my-header-index .content {
+.index-header.content {
 	height: 100%;
 	padding-bottom: 10px;
 	width: 100%;
 	z-index: 1;
 }
 
-.my-header-index .top {
+.index-header .top {
 	flex: 0 0 auto;
 	width: 50%;
 	text-align: center;
 }
 
-.my-header-index .top .iconfont,
-.my-header-index .bottom .iconfont {
+.index-header .top .iconfont,
+.index-header .bottom .iconfont {
 	line-break: 32px;
 	font-size: 20px;
 	margin-bottom: 5px;

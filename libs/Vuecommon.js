@@ -188,7 +188,8 @@ if (Vue) {
                     'border-bottom-color': 'transparent',
                     'border-radius': '100%',
                     margin: 'auto'
-                }
+                },
+                slot: 'loading-icon'
             })
         },
         props: {
@@ -213,7 +214,8 @@ if (Vue) {
                 style: {
                     margin: 'auto',
                     color: context.props.color || '#333'
-                }
+                },
+                slot: 'loading-text'
             }, context.props.text || '正在加载...')
         },
         props: {
@@ -239,8 +241,8 @@ if (Vue) {
         render: function (createElement, context) {
 
             //查找是否有 两个子组件
-            var loadingIcon = Vue.$utils.filterSlotsComponents(context, 'AnyiLoadingIcon');
-            var loadingText = Vue.$utils.filterSlotsComponents(context, 'AnyiLoadingText');
+            var loadingIcon = context.slots() && context.slots()['loading-icon'] || '';
+            var loadingText = context.slots() && context.slots()['loading-text'] || '';
 
             /**
              *检查 是否有 AnyiLoadingIcon AnyiLoadingText 组件
@@ -624,9 +626,9 @@ if (Vue) {
         componentName: 'AnyiCard',
         functional: true,
         render: function (createElement, context) {
-            var cardHeader = Vue.$utils.filterSlotsComponents(context, 'AnyiCardHeader');
-            var cardBody = Vue.$utils.filterSlotsComponents(context, 'AnyiCardBody');
-            var cardFooter = Vue.$utils.filterSlotsComponents(context, 'AnyiCardFooter');
+            var cardHeader = context.slots() && context.slots()['card-header'] || '';
+            var cardBody = context.slots() && context.slots()['card-body'] || '';
+            var cardFooter = context.slots() && context.slots()['card-footer'] || '';
             return createElement('div', {
                 class: 'anyi-card'
             }, [cardHeader, cardBody, cardFooter])

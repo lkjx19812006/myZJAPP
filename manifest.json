@@ -254,7 +254,9 @@
 					"css/index.css",
 					"libs/Vuecommon.js",
 					"css/anyi-ui.css",
-					"libs/vueExtend.js"
+					"libs/vueExtend.js",
+					"css/fonts/mui.ttf",
+					"libs/filters.js"
 				],
 				"refer": [
 					"html/user.html",
@@ -273,6 +275,21 @@
 					"libs/mui.min.js",
 					"libs/vueExtend.js",
 					"libs/utils.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/list.html": {
+				"resources": [
+					"css/fonts/mui.ttf",
+					"css/iconfont/iconfont.css",
+					"libs/utils.js",
+					"css/anyi-ui.css",
+					"css/common/mui.min.css",
+					"libs/vueExtend.js",
+					"libs/vue.min.js",
+					"libs/Vuecommon.js",
+					"css/common/base.css"
 				],
 				"refer": [],
 				"priority": 0

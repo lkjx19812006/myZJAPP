@@ -308,38 +308,33 @@
 							mui.toast('请输入金额');
 							return;
 						}
+						var obj = {
+							time: new Date().getTime(),
+							type: this.selectType,
+							num: Number(this.num),
+							comment: this.comment
+						};
 						switch(this.type) {
 							case 'in':
-								var obj = {
-									time: new Date().getTime(),
-									bf_type: 'in',
-									type: this.selectType,
-									num: this.num,
-									comment: this.comment
-								}
-								utils.setData('data', obj, function(){
-									mui.back();
-								});
-								
+							    obj.bf_type = 'in';
 								break;
 							case 'out':
 								if(!this.selectSubType) {
 									mui.toast('请选择类型或分类');
 									return;
 								}
-								var obj = {
-									time: new Date().getTime(),
-									bf_type: 'out',
-									type: this.selectType,
-									subType: this.selectSubType,
-									num: this.num,
-									comment: this.comment
-								}
-								utils.setData('data', obj, function(){
-									mui.back();
-								});								
+								obj.bf_type = 'out';
+								obj.subType = this.selectSubType;						
 								break;
-						};
+						};						
+						utils.setData('data', obj, function(){
+							//获取首页ID
+							var indexObj = plus.webview.getLaunchWebview();
+							mui.fire(indexObj, 'refresh');
+							setTimeout(function(){
+								mui.back();
+							}, 0);							
+						});	
 					},
 					//重置数据
 					resetForm: function() {
