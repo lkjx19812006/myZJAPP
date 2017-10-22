@@ -143,7 +143,7 @@
 			<!--列表-->
 			<anyi-page-content header="120px">
 				<ul class="items padding-5" id="content">
-					<li class="item" v-for="item in listDate">
+					<li class="item" v-for="item,index in listDate" @click="jmpto(index)">
 						<div class="item-title color-total">
 							<div class="iconfont" :class="item.icon">{{item.title}}</div>
 						</div>
@@ -204,7 +204,7 @@
 		<script>
 			var pagesStyle = {
 				top: 0,
-				bottom: '51px',
+				bottom: '50px',
 			};
 			var vm = new Vue({
 				el: '#box',
@@ -307,7 +307,7 @@
 						plus.webview.show(this.addPage, 'slide-in-right', 300);
 					},
 					getHttp: function() {
-						var data = utils.getData('data');						
+						var data = utils.getData('data');
 						//总收入
 						this.totalIn = filters.getTotal(utils.getDateData(data).in, 'num');
 						//总支出
@@ -326,6 +326,14 @@
 						setTimeout(function(){
 							mui('#content').pullRefresh().endPulldown();
 						}, 0)						
+					},
+					jmpto: function(index){
+						var listWebview = this.currentWebview.children()[0];
+						mui.fire(listWebview, 'getListType', index);
+						var _self = this;
+						setTimeout(function(){
+							_self.showSubPage(1);
+						}, 200);						
 					}
 				}
 			})

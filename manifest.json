@@ -274,7 +274,8 @@
 					"libs/vue.min.js",
 					"libs/mui.min.js",
 					"libs/vueExtend.js",
-					"libs/utils.js"
+					"libs/utils.js",
+					"css/anyi-ui.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -289,7 +290,9 @@
 					"libs/vueExtend.js",
 					"libs/vue.min.js",
 					"libs/Vuecommon.js",
-					"css/common/base.css"
+					"css/common/base.css",
+					"libs/mui.min.js",
+					"libs/filters.js"
 				],
 				"refer": [],
 				"priority": 0

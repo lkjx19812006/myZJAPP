@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="../css/common/base.css">
 		<!--<link rel="stylesheet" href="../css/common/mui.min.css">-->
 		<link rel="stylesheet" href="../css/iconfont/iconfont.css" />
+		<link rel="stylesheet" href="../css/anyi-ui.css" />
 		<title>Document</title>
 		<style>
 			body,
@@ -67,6 +68,9 @@
 				padding-bottom: 5px;
 				width: 100%;
 				background-color: #fafafa;
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
 			}
 			
 			.mui-content .item-radio {
@@ -126,25 +130,20 @@
 				border-top: 1px solid #FF7F27;
 			}
 			/*按钮样式激活类*/
-			.mui-content .mui-input-row {
+			/*.mui-content .mui-input-row {
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
 				align-items: center;
-			}
-			.mui-content .mui-input-row label {
+			}*/
+			.mui-content .mui-input-row .anyi-input-label {
 				font-size: 18px;
-				flex: 0 0 auto;
-				margin: 0 10px;
+				left: 5px;
 			}
 			.mui-content input[type=number]{
-				height: 40px;
-				line-height: 40px;
 				font-size: 20px;
 				color: #FF7F27;
-				border: none;
-				background: #f0f0f0;
-				flex: 1;
+				background-color: #f0f0f0;
 			}
 			.mui-content textarea{
 				width: 100%;
@@ -177,8 +176,7 @@
 					<div class="content">
 						<div class="input-item">
 							<div class="mui-input-row" style="margin-top: 10px">
-								<label for="number">收入金额</label>
-								<input v-model.price="num" id="number" name="number" type="number" placeholder="请输入收入金额">
+								<anyi-input label-width="90px" label="支出金额" v-model="num" type="number" placeholder="请输入消费金额"></anyi-input>
 							</div>
 							<div class="mui-input-row" style="margin: 10px 5px;">
 								<textarea v-model="comment" style="margin: 0" rows="3" placeholder="请输入备注信息"></textarea>
@@ -200,8 +198,7 @@
 					<div class="content">
 						<div class="input-item">
 							<div class="mui-input-row" style="margin-top: 10px">
-								<label for="number">支出金额</label>
-								<input v-model.price="num" id="number" name="number" type="number" placeholder="请输入消费金额">
+								<anyi-input label-width="90px" label="支出金额" v-model="num" type="number" placeholder="请输入消费金额"></anyi-input>
 							</div>
 							<div class="mui-input-row" style="margin: 10px 5px;">
 								<textarea v-model="comment" style="margin: 0" rows="3" placeholder="请输入备注信息"></textarea>
@@ -220,6 +217,7 @@
 		<script src="../libs/mui.min.js"></script>
 		<script src="../libs/vue.min.js"></script>
 		<script src="../libs/vueExtend.js"></script>
+		<script src="../libs/Vuecommon.js"></script>
 		<script src="../libs/utils.js"></script>
 		<script>
 			var vm = new Vue({
@@ -241,7 +239,7 @@
 						}, {
 							type: '食',
 							checked: false,
-							subTypes: ['买菜', '零食', '水果', '饮料', '大餐']
+							subTypes: ['买菜', '零食', '水果', '饮料','外卖','大餐']
 						}, {
 							type: '住',
 							checked: false,

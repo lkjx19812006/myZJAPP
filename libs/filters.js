@@ -75,16 +75,7 @@ if(Vue) {
 	//格式化价钱 价钱必须先乘 100 后传入	
 	filters.price = function(price) {
 		price = price / 100 + '';
-		var len = price.length;
-		var searchIndex = price.indexOf('.')
-		if(searchIndex === -1) {
-			return price += '.00';
-		} else if(len - searchIndex === 2) {
-			return price + '0';
-		} else if(len - searchIndex === 3) {
-			return price
-		}
-		return price / 100;
+		return price.indexOf('.') === -1 ? price + '.00' : price.slice(0, price.indexOf('.') + 3);
 	}
 
 	//获取数组中的总和 某个键对应值的总和

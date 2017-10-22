@@ -6,6 +6,7 @@ if(Vue) {
 		bind: function(el, binding, vnode) {
 			if(binding.modifiers.price) {
 				el.addEventListener('input', function(e) {
+					return
 					formattedHandler(e)
 				})
 				el.addEventListener('blur', function(e) {
@@ -24,9 +25,7 @@ if(Vue) {
 			var formattedHandler = function(e) {
 				var tar = formattedValue(e.target.value);
 				e.target.value = tar;
-				vnode.context[binding.expression] = tar;				
-				var range = window.getSelection();
-				range.collapseToEnd()
+				vnode.context.value = tar;
 			}
 		},
 	})

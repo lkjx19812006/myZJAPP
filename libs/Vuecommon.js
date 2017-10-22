@@ -561,17 +561,11 @@ if(Vue) {
 					attrs: {
 						type: this.type,
 						placeholder: this.placeholder,
-						value: this.value
 					},
 					on: {
 						input: this.change
-					},
-					directives: [{
-						name: 'model',
-						modifiers:{
-							price:true
-						}
-					}]
+					}
+
 				})
 			];
 			//设置label 标题后 动态创建输入框标题
@@ -588,6 +582,7 @@ if(Vue) {
 						}
 					}, _self.label)
 				}
+				//将label 添加到前面
 				slotContent.unshift(
 					getLabel()
 				);
@@ -621,7 +616,15 @@ if(Vue) {
 		},
 		methods: {
 			change: function(e) {
-				this.$emit('input', e.target.value);
+				var value = e.target.value;
+				if(this.type === 'number'){
+					value = value.trim().slice(
+						0,
+						value.indexOf('.') === -1 ? value.length : value.indexOf('.') + 3
+					);
+				}
+				this.$emit('input', value);
+				this.$el.children[this.$el.children.length - 1].value = value;
 			}
 		}
 	})

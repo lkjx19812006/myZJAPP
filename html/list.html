@@ -6,42 +6,290 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="../css/common/base.css" />
-		<link rel="stylesheet" href="../css/common/mui.min.css"/>
+		<link rel="stylesheet" href="../css/common/mui.min.css" />
 		<link rel="stylesheet" href="../css/iconfont/iconfont.css" />
 		<link rel="stylesheet" href="../css/anyi-ui.css" />
+		<style>
+			.list-header {
+				position: fixed;
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: center;
+				background: #fff;
+				width: 100%;
+				border-bottom: 1px solid #FF7F27;
+				z-index: 99;
+				box-shadow: 0 2px 8px #ccc;
+			}
+			
+			.list-header .button-type {
+				font-size: 18px;
+				height: 44px;
+				line-height: 44px;
+				flex: 0 0 25%;
+				text-align: center;
+				background: #fff;
+			}
+			
+			.list-header .active {
+				color: #fff;
+				background: #FF7F27;
+			}
+			
+			.wrap {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+				justify-content: flex-start;
+				align-items: flex-start;
+				position: relative;
+				padding: 10px;
+			}
+			
+			.wrap .lineY {
+				position: absolute;
+				top: 0;
+				width: 2px;
+				background: #FF7F27;
+				height: 100%;
+				left: 50%;
+				margin-left: -1px;
+			}
+			/*内容列表开始*/
+			
+			.item-wrap {
+				padding: 5px 0;
+				flex: 0 0 auto;
+				width: 50%;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				position: relative;
+			}
+			
+			.item-wrap.flex-start {
+				justify-content: flex-end;
+			}
+			
+			.item-wrap.flex-end {
+				justify-content: flex-start;
+			}
+			
+			.content {
+				display: flex;
+				flex-direction: column;
+				justify-content: start;
+				padding: 10px 10px;
+				font-size: 14px;
+				line-height: 24px;
+				box-shadow: 0 0 5px #aaa;
+				border-radius: 6px;
+				flex: 1;
+			}
+			
+			.icon {
+				height: 10px;
+				width: 10px;
+				border-radius: 5px;
+				background: #FF7F27;
+				position: absolute;
+				top: 50%;
+				margin-top: -5px;
+			}
+			
+			.line {
+				width: 30px;
+				height: 2px;
+				background: #FF7F27;
+			}
+			
+			.flex-start {
+				align-self: flex-start;
+			}
+			
+			.flex-start .icon {
+				right: -5px;
+			}
+			
+			.flex-end {
+				align-self: flex-end;
+			}
+			
+			.flex-end .icon {
+				left: -5px;
+			}
+			
+			.flex-start .content {
+				align-items: flex-start;
+				text-align: left;
+			}
+			.flex-end .content {
+				align-items: flex-start;
+				text-align: left;
+			}
+			
+			/*顶部样式*/
+			.top_total{
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				margin-top: 10px;
+			}
+			.top_total > div {
+				height: 40px;
+				line-height: 40px;
+				width: 140px;
+				color: #fff;
+				text-align: center;
+				box-shadow: 0 0 5px #aab1b1 inset;
+			}
+			.top_total .left {
+				border-top-left-radius: 20px;
+				border-bottom-left-radius: 20px;
+				color:  #F78F62;
+			}
+			.top_total .right {
+				color:  #F68D8D;
+				border-top-right-radius: 20px;
+				border-bottom-right-radius: 20px;
+			}
+		</style>
 	</head>
 
 	<body>
 		<div id="box">
-			<anyi-page-header title="列表页">
-				<anyi-page-header-left color="#f38657">
-					<span class="mui-action-back mui-icon mui-icon-left-nav"></span>
-				</anyi-page-header-left>
-				<anyi-page-header-right color="red">
-					<span class="mui-icon mui-icon-bars"></span>
-				</anyi-page-header-right>
-			</anyi-page-header>
-			<anyi-page-content header="120px" footer="50px">
-				<anyi-input type="number" v-model.price="price"></anyi-input>
+			<div class="list-header">
+				<div @click="tabChange(index)" class="button-type" :class="{'active': activeIndex === index}" v-for="item, index in btnConfig">
+					{{item.title}}
+				</div>
+			</div>
+			<anyi-page-content header="44px">
+				<div class="top_total">
+					<div class="left total-in iconfont icon-shouru">
+						{{totalIn}}
+					</div>
+					<div class="right total-out iconfont icon-zhichu">		
+						{{totalOut}}
+					</div>
+				</div>
+				<div class="wrap">
+					<div class="lineY">
+					</div>
+					<div class="item-wrap" :class="{'flex-end' : item.bf_type === 'out', 'flex-start': item.bf_type === 'in'}" v-for="item in nowData">
+						<div class="icon">
+						</div>
+						<div class="line" v-if="item.bf_type === 'out'">
+						</div>
+						<div class="content">
+							<span class="time">
+								<span style="font-size: 12px;">{{item.time | getYMD}}</span>
+							</span>
+							<div>
+								<span>类型：</span>
+								<span v-if="item.bf_type === 'in'">{{item.type}}</span>
+								<span v-if="item.bf_type === 'out'">{{item.type}}、{{item.subType}}</span>
+							</div>
+							<span class="price" :class="{'color-in': item.bf_type === 'in', 'color-out': item.bf_type === 'out'}">
+								<span>金额：</span>
+								<span>{{item.num}}</span>
+							</span>
+							<div class="comment">
+								<span class="comment-txt">备注：</span>
+								<span class="comment-txt">{{item.comment}}</span>
+							</div>
+						</div>
+						<div class="line" v-if="item.bf_type === 'in'">
+						</div>
+					</div>
+				</div>
 			</anyi-page-content>
-			
+
 		</div>
-		<script src="../js/mui.min.js"></script>
+		<script src="../libs/mui.min.js"></script>
 		<script src="../libs/vue.min.js"></script>
+		<script src="../libs/filters.js"></script>
 		<script src="../libs/vueExtend.js"></script>
 		<script src="../libs/utils.js"></script>
 		<script src="../libs/vueExtend.js"></script>
 		<script src="../libs/Vuecommon.js"></script>
-		
 		<script>
 			var vm = new Vue({
 				el: '#box',
-				data: function(){
+				data: function() {
 					return {
-						index: 1,
-						price: ''
+						activeIndex: 0,
+						btnConfig: [{
+								title: '今日',
+								data: []
+							},
+							{
+								title: '本周',
+								data: []
+							},
+							{
+								title: '本月',
+								data: []
+							},
+							{
+								title: '今年',
+								data: []
+							}
+						],
+						nowData: [],
+						totalIn: 0,
+						totalOut: 0,
+					}
+				},
+				methods: {
+					getData: function() {
+						var data = utils.getData('data');
+						var obj = { in: [],
+							out: []
+						};
+						switch(this.activeIndex) {
+							case 0:
+								//今日
+								obj = utils.getDateData(data).D;
+								break;
+							case 1:
+								//本周
+								obj = utils.getDateData(data).d;
+								break;
+							case 2:
+								//本月
+								obj = utils.getDateData(data).M;
+								break;
+							case 3:
+								//本年
+								obj = utils.getDateData(data).Y;
+								break;
+							default:
+								//今日
+								obj = utils.getDateData(data).D;
+								break;
+						}
+						//收入
+						this.totalIn = filters.getTotal(obj.in, 'num');
+						//支出
+						this.totalOut = filters.getTotal(obj.out, 'num');
+						
+						this.nowData = obj.in.concat(obj.out);
+						console.log(JSON.stringify(this.nowData));
+					},
+					tabChange: function(index){
+						this.activeIndex = index;
+						this.getData();
 					}
 				}
+			})
+			mui.init();
+			mui.plusReady(function() {
+				vm.getData();
+			});
+			window.addEventListener('getListType', function(e) {
+				vm.activeIndex = e.detail;
+				vm.getData();
 			})
 		</script>
 	</body>

@@ -248,7 +248,7 @@ if(Vue) {
 	 * @param data 存储的所有数据 返回一个组数
 	 * @return {Y, M, D, d}
 	 **/
-	utils.getDateData = function(data, type) {
+	utils.getDateData = function(data) {
 		//获取
 		var now = this.getTime(new Date().getTime());
 		var obj = {
